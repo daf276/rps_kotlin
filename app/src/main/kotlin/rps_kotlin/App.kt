@@ -7,7 +7,7 @@ enum class Hand {
     ROCK, PAPER, SCISSORS
 }
 
-private fun chooseRock(): Hand {
+fun chooseRock(): Hand {
     return Hand.ROCK
 }
 

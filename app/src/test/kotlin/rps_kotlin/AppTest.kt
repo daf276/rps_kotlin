@@ -9,6 +9,6 @@ import kotlin.test.assertNotNull
 
 class AppTest {
     @Test fun rockStratChoosesRock() {
-        assertEquals(chooseRock(), Hand.ROCK)
+        assertEquals(chooseRock(), Hand.Rock, "Rock chooser should always choose Rock")
     }
 }
