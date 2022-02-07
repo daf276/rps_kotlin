@@ -7,12 +7,35 @@ enum class Hand {
     ROCK, PAPER, SCISSORS
 }
 
+val BEATS = mapOf(Hand.ROCK to Hand.SCISSORS, Hand.SCISSORS to Hand.PAPER, Hand.PAPER to Hand.ROCK)
+
 fun chooseRock(): Hand {
     return Hand.ROCK
 }
 
+fun chooseRandom(): Hand {
+    return Hand.values().random()
+}
+
+fun beats(hand1: Hand, hand2: Hand): Boolean{
+    return BEATS[hand1] == hand2
+}
+
 fun main() {
+    var player1Wins = 0
+    var player2Wins = 0
+    var draws = 0
+
     repeat(100) {
-        println(it)
+        val player1 = chooseRock()
+        val player2 = chooseRandom()
+
+        if (beats(player1, player2)) player1Wins++
+        else if(beats(player2, player1)) player2Wins++
+        else draws++
     }
+
+    println("Player 1 has won $player1Wins times")
+    println("Player 2 has won $player2Wins times")
+    println("There were $draws draws")
 }
