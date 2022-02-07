@@ -5,13 +5,8 @@ package rps_kotlin
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 class AppTest {
-    @Test fun rockStratChoosesRock() {
-        assertEquals(chooseRock(), Hand.ROCK, "Rock chooser should always choose Rock")
-    }
-
     @Test fun testRockBeats() {
         assertEquals(beats(Hand.ROCK, Hand.ROCK), false)
         assertEquals(beats(Hand.ROCK, Hand.PAPER), false)
