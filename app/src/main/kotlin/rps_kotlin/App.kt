@@ -6,17 +6,11 @@ enum class Hand {
 
 val BEATS = mapOf(Hand.ROCK to Hand.SCISSORS, Hand.SCISSORS to Hand.PAPER, Hand.PAPER to Hand.ROCK)
 
-fun chooseRock(): Hand {
-    return Hand.ROCK
-}
+fun beats(hand1: Hand, hand2: Hand): Boolean = BEATS[hand1] == hand2
 
-fun chooseRandom(): Hand {
-    return Hand.values().random()
-}
+fun chooseRock(): Hand = Hand.ROCK
 
-fun beats(hand1: Hand, hand2: Hand): Boolean {
-    return BEATS[hand1] == hand2
-}
+fun chooseRandom(): Hand = Hand.values().random()
 
 fun main() {
     var player1Wins = 0
