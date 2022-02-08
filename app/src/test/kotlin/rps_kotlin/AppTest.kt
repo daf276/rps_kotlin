@@ -3,6 +3,7 @@
  */
 package rps_kotlin
 
+import rps_kotlin.Result
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -23,6 +24,12 @@ class AppTest {
         assertEquals(beats(Hand.SCISSORS, Hand.ROCK), false)
         assertEquals(beats(Hand.SCISSORS, Hand.PAPER), true)
         assertEquals(beats(Hand.SCISSORS, Hand.SCISSORS), false)
+    }
+
+    @Test fun testRoundResults() {
+        assertEquals(roundResult(Hand.SCISSORS, Hand.ROCK), Result.LOSS)
+        assertEquals(roundResult(Hand.ROCK, Hand.ROCK), Result.DRAW)
+        assertEquals(roundResult(Hand.PAPER, Hand.ROCK), Result.WIN)
     }
 
 }
