@@ -20,9 +20,9 @@ fun roundResult(mainHand: Hand, opposingHand: Hand): RoundResult = when {
     else -> RoundResult.DRAW
 }
 
-fun playRounds(numberOfRounds: Int, mainPlayerStrategy: () -> Hand, opposingPlayerStrategy: () -> Hand): Results{
-    val outcomes = (0 until numberOfRounds).map{roundResult(mainPlayerStrategy(), opposingPlayerStrategy())}
-    return Results(outcomes.count{it == RoundResult.WIN }, outcomes.count{it == RoundResult.LOSS }, outcomes.count{it == RoundResult.DRAW })
+fun playRounds(numberOfRounds: Int, mainPlayerStrategy: () -> Hand, opposingPlayerStrategy: () -> Hand): Results {
+    val outcomes = (0 until numberOfRounds).map { roundResult(mainPlayerStrategy(), opposingPlayerStrategy()) }
+    return Results(outcomes.count { it == RoundResult.WIN }, outcomes.count { it == RoundResult.LOSS }, outcomes.count { it == RoundResult.DRAW })
 }
 
 fun chooseRock(): Hand = Hand.ROCK
