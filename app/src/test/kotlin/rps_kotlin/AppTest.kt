@@ -3,7 +3,6 @@
  */
 package rps_kotlin
 
-import rps_kotlin.Result
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -27,9 +26,31 @@ class AppTest {
     }
 
     @Test fun testRoundResults() {
-        assertEquals(roundResult(Hand.SCISSORS, Hand.ROCK), Result.LOSS)
-        assertEquals(roundResult(Hand.ROCK, Hand.ROCK), Result.DRAW)
-        assertEquals(roundResult(Hand.PAPER, Hand.ROCK), Result.WIN)
+        assertEquals(roundResult(Hand.SCISSORS, Hand.ROCK), RoundResult.LOSS)
+        assertEquals(roundResult(Hand.ROCK, Hand.ROCK), RoundResult.DRAW)
+        assertEquals(roundResult(Hand.PAPER, Hand.ROCK), RoundResult.WIN)
     }
 
+    @Test fun testPlayRoundsSimpleStrategyDraws() {
+        val numberOfRounds = 10
+        val results = playRounds(numberOfRounds, ::chooseRock, ::chooseRock)
+        assertEquals(results.draws, numberOfRounds)
+        assertEquals(results.wins+results.losses+results.draws, numberOfRounds)
+    }
+
+    @Test fun testPlayRoundsSimpleStrategyWins() {
+        val paperStrat = {Hand.PAPER}
+        val numberOfRounds = 10
+        val results = playRounds(numberOfRounds, paperStrat, ::chooseRock)
+        assertEquals(results.wins, numberOfRounds)
+        assertEquals(results.wins+results.losses+results.draws, numberOfRounds)
+    }
+
+    @Test fun testPlayRoundsSimpleStrategyLosses() {
+        val scissorStrategy = {Hand.SCISSORS}
+        val numberOfRounds = 10
+        val results = playRounds(numberOfRounds, scissorStrategy, ::chooseRock)
+        assertEquals(results.losses, numberOfRounds)
+        assertEquals(results.wins+results.losses+results.draws, numberOfRounds)
+    }
 }

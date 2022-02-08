@@ -1,22 +1,18 @@
 package rps_kotlin
 
-enum class Hand {
-    ROCK, PAPER, SCISSORS
-}
+data class Results(val wins: Int, val losses: Int, val draws: Int)
 
 enum class RoundResult {
     WIN, LOSS, DRAW
 }
 
-data class Results(val wins: Int, val losses: Int, val draws: Int)
+enum class Hand {
+    ROCK, PAPER, SCISSORS
+}
 
 val BEATS = mapOf(Hand.ROCK to Hand.SCISSORS, Hand.SCISSORS to Hand.PAPER, Hand.PAPER to Hand.ROCK)
 
 fun beats(hand1: Hand, hand2: Hand): Boolean = BEATS[hand1] == hand2
-
-fun chooseRock(): Hand = Hand.ROCK
-
-fun chooseRandom(): Hand = Hand.values().random()
 
 fun roundResult(mainHand: Hand, opposingHand: Hand): RoundResult = when {
     beats(mainHand, opposingHand) -> RoundResult.WIN
@@ -28,6 +24,9 @@ fun playRounds(numberOfRounds: Int, mainPlayerStrategy: () -> Hand, opposingPlay
     val outcomes = (0 until numberOfRounds).map{roundResult(mainPlayerStrategy(), opposingPlayerStrategy())}
     return Results(outcomes.count{it == RoundResult.WIN }, outcomes.count{it == RoundResult.LOSS }, outcomes.count{it == RoundResult.DRAW })
 }
+
+fun chooseRock(): Hand = Hand.ROCK
+fun chooseRandom(): Hand = Hand.values().random()
 
 fun main() {
     val results = playRounds(100, ::chooseRandom, ::chooseRock)
