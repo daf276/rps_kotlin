@@ -40,7 +40,8 @@ class AppTest {
         val numberOfRounds = 10
         val results = playRounds(numberOfRounds, ::chooseRock, ::chooseRock)
         assertEquals(results.draws, numberOfRounds)
-        assertEquals(results.wins + results.losses + results.draws, numberOfRounds)
+        assertEquals(results.wins, 0);
+        assertEquals(results.losses, 0);
     }
 
     @Test
@@ -49,7 +50,8 @@ class AppTest {
         val numberOfRounds = 10
         val results = playRounds(numberOfRounds, paperStrat, ::chooseRock)
         assertEquals(results.wins, numberOfRounds)
-        assertEquals(results.wins + results.losses + results.draws, numberOfRounds)
+        assertEquals(results.draws, 0);
+        assertEquals(results.losses, 0);
     }
 
     @Test
@@ -58,6 +60,7 @@ class AppTest {
         val numberOfRounds = 10
         val results = playRounds(numberOfRounds, scissorStrategy, ::chooseRock)
         assertEquals(results.losses, numberOfRounds)
-        assertEquals(results.wins + results.losses + results.draws, numberOfRounds)
+        assertEquals(results.wins, 0);
+        assertEquals(results.draws, 0);
     }
 }
